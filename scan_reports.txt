@@ -1,0 +1,8 @@
+[INFO] Scanning target: 192.168.1.1 - Status: COMPLETED
+[INFO] Scanning target: 192.168.1.5 - Status: COMPLETED
+[INFO] Scanning target: 10.0.0.15 - Status: COMPLETED
+[INFO] Scanning target: 172.16.0.20 - Status: COMPLETED
+[INFO] Scanning target: 192.168.1.1 - Status: COMPLETED
+[INFO] Scanning target: 192.168.1.5 - Status: COMPLETED
+[INFO] Scanning target: 10.0.0.15 - Status: COMPLETED
+[INFO] Scanning target: 172.16.0.20 - Status: COMPLETED
