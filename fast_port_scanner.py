@@ -7,7 +7,7 @@ def scan_port(ip, port):
     try:
         # Socket creation (IPv4, TCP)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(1.0) # Bekleme süresi (Hız için kısa tuttuk)
+        s.settimeout(1.0) 
         
         # Connection attempt (port is open if it returns 0)
         result = s.connect_ex((ip, port)) 
