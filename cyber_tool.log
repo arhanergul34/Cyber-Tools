@@ -1,0 +1,4 @@
+2026-04-25 17:46:20,602 - INFO - System scan started
+2026-04-25 17:46:20,602 - WARNING - A vulnerability has been detected on Port 80!
+2026-04-25 17:46:20,602 - ERROR - Report file could not be created!
+2026-04-25 17:46:20,602 - INFO - Transaction completed successfully.
