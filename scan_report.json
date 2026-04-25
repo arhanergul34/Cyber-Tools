@@ -1,16 +1,16 @@
 {
     "target": "scanme.nmap.org",
-    "scan_time": "2026-04-21 13:09:56",
+    "scan_time": "2026-04-25 18:20:15",
     "findings": [
         {
             "port": 22,
             "status": "OPEN",
-            "banner": "HTTP/1.1 403 Forbidden\r\nX-Frame-Options: SAMEORIGIN\r\nX-XSS-Protection: 1; mode=block\r\nX-Content-Type-Options: nosniff\r\nContent-Security-Policy: frame-ancestors 'self'\r\nContent-Type: text/html; charset=\"utf-8\"\r\nContent-Length: 29746\r\nConnection: Close\r\n\r\n<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=8; IE=EDGE\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <style type=\"text/css\">\n            body {\n                height: 100%;\n                font-family: Helvetica, Arial, sans-serif;\n                color: #6a6a6a;\n                margin: 0;\n                display: flex;\n                align-items: center;\n                justify-content: center;\n            }\n            input[type=date], input[type=email], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], select, textarea {\n                color: #2626"
+            "banner": "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13"
         },
         {
             "port": 80,
             "status": "OPEN",
-            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Tue, 21 Apr 2026 11:10:46 GMT\r\nServer: Apache/2.4.7 (Ubuntu)\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1"
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Sat, 25 Apr 2026 16:21:09 GMT\r\nServer: Apache/2.4.7 (Ubuntu)\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1"
         },
         {
             "port": 443,
