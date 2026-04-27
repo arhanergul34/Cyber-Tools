@@ -1,0 +1,3 @@
+scanme.nmap.org
+google.com
+github.com
