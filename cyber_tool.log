@@ -7,3 +7,20 @@
 2026-04-25 18:20:15,888 - INFO - STEP 2: Scanning report found. Proceeding with vulnerability analysis...
 2026-04-25 18:20:16,098 - INFO - STEP 3: The analysis results are scored and the risk level is determined...
 2026-04-25 18:20:16,249 - INFO - --- THE OPERATION WAS SUCCESSFULLY COMPLETED ---
+2026-04-25 20:03:48,834 - ERROR - ERROR: targets.txt was not found!
+2026-04-25 20:19:35,204 - INFO - === MASS SCREENING HAS BEGUN: 3 Target Set ===
+2026-04-25 20:19:35,204 - INFO - >>> TARGET IS BEING PROCESSED: scanme.nmap.org <<<
+2026-04-25 20:19:38,393 - INFO - Analysis Completed: report_scanme_nmap_org.json saved.
+2026-04-25 20:19:38,393 - INFO - >>> TARGET IS BEING PROCESSED: google.com <<<
+2026-04-25 20:19:40,883 - INFO - Analysis Completed: report_google_com.json saved.
+2026-04-25 20:19:40,884 - INFO - >>> TARGET IS BEING PROCESSED: github.com <<<
+2026-04-25 20:19:43,338 - INFO - Analysis Completed: report_github_com.json saved.
+2026-04-25 20:19:43,338 - INFO - === ALL TARGETS WERE SUCCESSFULLY SCANNED ===
+2026-04-28 00:01:37,655 - INFO - === RAPID SCANNING HAS STARTED (3 Target)
+2026-04-28 00:01:37,658 - INFO - [*] Worker Started: scanme.nmap.org scanning...
+2026-04-28 00:01:37,661 - INFO - [*] Worker Started: google.com scanning...
+2026-04-28 00:01:37,663 - INFO - [*] Worker Started: github.com scanning...
+2026-04-28 00:01:40,201 - INFO - [\u2713] google.com completed and saved as fast_report_google_com.json
+2026-04-28 00:01:40,202 - INFO - [\u2713] github.com completed and saved as fast_report_github_com.json
+2026-04-28 00:01:40,202 - INFO - [\u2713] scanme.nmap.org completed and saved as fast_report_scanme_nmap_org.json
+2026-04-28 00:01:40,204 - INFO - === ALL RAPID SCANS HAVE BEEN COMPLETED ===

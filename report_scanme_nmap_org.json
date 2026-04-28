@@ -1,6 +1,6 @@
 {
     "target": "scanme.nmap.org",
-    "scan_time": "2026-04-25 18:20:15",
+    "scan_time": "2026-04-25 20:19:38",
     "findings": [
         {
             "port": 22,
@@ -10,7 +10,7 @@
         {
             "port": 80,
             "status": "OPEN",
-            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Sat, 25 Apr 2026 16:21:09 GMT\r\nServer: Apache/2.4.7 (Ubuntu)\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1"
+            "banner": "HTTP/1.1 400 Bad Request\r\nDate: Sat, 25 Apr 2026 18:20:30 GMT\r\nServer: Apache/2.4.7 (Ubuntu)\r\nConnection: close\r\nContent-Type: text/html; charset=iso-8859-1"
         },
         {
             "port": 443,
