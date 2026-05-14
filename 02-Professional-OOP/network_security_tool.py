@@ -56,5 +56,5 @@ class NetworkSecurityTool:
 # --- MAIN EXECUTION ---
 if __name__ == "__main__":
     # You can enter your own network details here.
-    my_tool = NetworkSecurityTool(target_ip="192.168.0.86", gateway_ip="192.168.0.1")
+    my_tool = NetworkSecurityTool(target_ip="192.168.x.x", gateway_ip="192.168.x.x")
     my_tool.start_attack()
