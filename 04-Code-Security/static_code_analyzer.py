@@ -21,7 +21,7 @@ class StaticCodeAnalyzer:
                 
                 # Read each line in the file, along with its sequence number (Manager-Worker Logic)
                 for line_number, current_line in enumerate(file, 1):
-                    current_line = current_line.strip()
+                    
                     
                     # Test each cyber risk on this single line.
                     for vuln_type, pattern, description in self.vulnerability_signatures:

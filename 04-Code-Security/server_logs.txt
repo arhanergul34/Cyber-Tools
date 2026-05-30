@@ -1,0 +1,5 @@
+[2026-05-30 12:00:01] INFO: User login attempt from IP 192.168.1.45
+[2026-05-30 12:05:22] WARN: Payment failed for user credit card 4321-5678-9876-1122
+[2026-05-30 12:10:14] ERROR: Database timeout during registration for ahmet.yilmaz@email.com
+[2026-05-30 12:15:00] INFO: Identity verified successfully for citizen: 28475930284
+[2026-05-30 12:20:55] INFO: System health check status: OK
