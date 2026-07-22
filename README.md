@@ -170,3 +170,4 @@ This module culminates the training suite by simulating advanced infrastructure 
 
 #### 🛡️ 6. Event ID 4768 SIEM Audit & Dynamic Mitigation (Blue Team)
 * **`security_asrep_monitor.py` / `ASREPMonitoringEngine`:** A real-time behavioral detection module analyzing Windows Event ID 4768 (`A Kerberos authentication ticket was requested`) log streams. It monitors requests bypassing Pre-Authentication, detects weak cipher downgrades (`RC4-HMAC` / `0x17`), tracks request frequencies via a sliding-window algorithm, and triggers automated incident response workflows to enforce security policies and restrict malicious IPs.
+
