@@ -171,3 +171,8 @@ This module culminates the training suite by simulating advanced infrastructure 
 #### 🛡️ 6. Event ID 4768 SIEM Audit & Dynamic Mitigation (Blue Team)
 * **`security_asrep_monitor.py` / `ASREPMonitoringEngine`:** A real-time behavioral detection module analyzing Windows Event ID 4768 (`A Kerberos authentication ticket was requested`) log streams. It monitors requests bypassing Pre-Authentication, detects weak cipher downgrades (`RC4-HMAC` / `0x17`), tracks request frequencies via a sliding-window algorithm, and triggers automated incident response workflows to enforce security policies and restrict malicious IPs.
 
+#### 🥷 7. Group Policy (GPO) Abusing & Persistence (Red Team)
+* **`hacker_gpo_abuse.py` / `GPOAbuseSimulator`:** An offensive security auditing module simulating GPO/SYSVOL exploitation via weak Access Control Lists (ACLs). It detects over-privileged write permissions granted to standard Domain Users and demonstrates persistent code execution by injecting malicious Scheduled Task structures (`ScheduledTasks.xml`) across domain endpoints.
+
+#### 🛡️ 8. Event ID 5136 GPO Modification & SYSVOL Monitor (Blue Team)
+* **`security_gpo_monitor.py` / `GPOMonitoringEngine`:** A SOC/SIEM telemetry and threat detection engine analyzing Windows Event ID 5136 (`A directory service object was modified`). It actively audits Active Directory directory service changes, detects unauthorized GPO object modifications against an administrative whitelist, flags malicious persistence patterns (e.g., PowerShell task injections), and triggers automated incident response workflows.
