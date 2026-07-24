@@ -176,3 +176,15 @@ This module culminates the training suite by simulating advanced infrastructure 
 
 #### 🛡️ 8. Event ID 5136 GPO Modification & SYSVOL Monitor (Blue Team)
 * **`security_gpo_monitor.py` / `GPOMonitoringEngine`:** A SOC/SIEM telemetry and threat detection engine analyzing Windows Event ID 5136 (`A directory service object was modified`). It actively audits Active Directory directory service changes, detects unauthorized GPO object modifications against an administrative whitelist, flags malicious persistence patterns (e.g., PowerShell task injections), and triggers automated incident response workflows.
+
+#### 🥷 9. Active Directory DCSync Attack Simulation (Red Team)
+* **`hacker_dcsync_exploit.py` / `DCSyncExploitEngine`:** A technical simulation module demonstrating the mechanics of DCSync attacks over the Directory Replication Service Remote Protocol (`DRSUAPI`). It models how over-privileged non-Domain Controller accounts (e.g., misconfigured service accounts with `DS-Replication-Get-Changes-All` rights) can request credential hashes (such as `krbtgt` NTLM hashes) remotely without executing local code on the Domain Controller.
+
+#### 🛡️ 10. Event ID 4662 DCSync Detection & Mitigation (Blue Team)
+* **`security_dcsync_mitigator.py` / `DCSyncMitigationEngine`:** A SOC/SIEM telemetry and automated incident response engine that monitors Windows Event ID 4662 (`An operation was performed on an object`). It intercepts directory service replication requests, verifies origin IPs against an authorized Domain Controller whitelist, flags unauthorized `DRSUAPI` replication attempts, and triggers automated remediation actions (ACL revocation and host isolation).
+
+#### 🥷 11. Pass-the-Hash (PtH) Lateral Movement (Red Team)
+* **`hacker_pth_exploit.py` / `PassTheHashExploitEngine`:** An offensive lateral movement simulation engine demonstrating NTLM hash reuse attack vectors. It models how an attacker with a captured NTLM hash (without needing clear-text passwords) negotiates SMB NTLMSSP authentication, accesses administrative shares (`ADMIN$`), and executes remote payloads via PsExec-style service creation mechanisms.
+
+#### 🛡️ 12. Event 4624 & 7045 Pass-the-Hash Detection (Blue Team)
+* **`security_pth_monitor.py` / `PassTheHashMonitoringEngine`:** A threat detection and automated response engine correlating Windows Event ID 4624 (Logon Type 3 - Network via NTLM) and Event ID 7045 (New Service Installation). It detects anomalous NTLM-authenticated administrative network logons followed by immediate service execution, automatically terminating malicious remote services and isolating the offending source host.
