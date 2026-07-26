@@ -188,3 +188,11 @@ This module culminates the training suite by simulating advanced infrastructure 
 
 #### 🛡️ 12. Event 4624 & 7045 Pass-the-Hash Detection (Blue Team)
 * **`security_pth_monitor.py` / `PassTheHashMonitoringEngine`:** A threat detection and automated response engine correlating Windows Event ID 4624 (Logon Type 3 - Network via NTLM) and Event ID 7045 (New Service Installation). It detects anomalous NTLM-authenticated administrative network logons followed by immediate service execution, automatically terminating malicious remote services and isolating the offending source host.
+
+### 📁 Folder 08: Low-Level Network Protocol Security & TCP SYN Flood Engine
+
+#### 🥷 13. Raw TCP SYN Flood Attack Engine (Red Team)
+* **`hacker_syn_flooder.py` / `RealTCPSynFlooder`:** An offensive Denial-of-Service (DoS) simulation engine utilizing raw socket API calls and low-level C-struct binary header packing (`struct.pack`). It generates customized 40-byte TCP packets with active `SYN` flags and spoofed source IP addresses to overwhelm targeted TCP services. The engine features an automatic fallback mode (`_stream_burst`) to maintain high-frequency non-blocking connection floods when administrator privileges are restricted.
+
+#### 🛡️ 14. Sliding Window TCP SYN Flood Detection & Blacklisting Engine (Blue Team)
+* **`security_syn_defender.py` / `SYNFloodDefender`:** A real-time network threat detection and automated mitigation engine implementing a Sliding Time Window algorithm with $O(1)$ lookup complexity (`set` based datastructure). It monitors inbound TCP connection rate limits per IP address, automatically purging expired time-stamps. Upon detecting anomalous connection bursts exceeding predefined threshold values within an active time window, it dynamically triggers automated host blacklisting and packet drop rules.
