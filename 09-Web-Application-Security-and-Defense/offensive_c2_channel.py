@@ -21,7 +21,7 @@ class EncryptedC2Channel:
             algorithm=hashes.SHA256(),
             length=32,   # 32 bayt = 256 bit
             salt=self.salt,
-            iterations=100_00
+            iterations=100_000
         )
         self.key = kdf.derive(shared_passphrase.encode('utf-8'))
         self.cipher = AESGCM(self.key)
