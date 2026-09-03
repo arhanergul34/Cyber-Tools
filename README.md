@@ -196,3 +196,70 @@ This module culminates the training suite by simulating advanced infrastructure 
 
 #### 🛡️ 14. Sliding Window TCP SYN Flood Detection & Blacklisting Engine (Blue Team)
 * **`security_syn_defender.py` / `SYNFloodDefender`:** A real-time network threat detection and automated mitigation engine implementing a Sliding Time Window algorithm with $O(1)$ lookup complexity (`set` based datastructure). It monitors inbound TCP connection rate limits per IP address, automatically purging expired time-stamps. Upon detecting anomalous connection bursts exceeding predefined threshold values within an active time window, it dynamically triggers automated host blacklisting and packet drop rules.
+
+
+🥷 15. Raw Layer 2 ARP Spoofing & Man-in-the-Middle Engine (Red Team)
+hacker_arp_spoofer.py / ArpSpoofingEngine: An offensive attack simulation engine performing bidirectional Man-in-the-Middle (MitM) poisoning utilizing low-level socket.AF_PACKET and SOCK_RAW socket APIs at Layer 2 (Data Link). It constructs 14-byte Ethernet and 28-byte ARP (Opcode 2 - Reply) headers in binary format using struct.pack. The engine intercepts traffic between the victim and the Gateway, and triggers an automated self-healing mechanism (restore_network()) upon termination (Ctrl+C) to revert the network to its original routing state.
+
+🛡️ 16. Stateful IP-MAC Cache Monitoring & ARP IDS Engine (Blue Team)
+security_arp_defender.py / ArpDefenderEngine: A stateful intrusion detection engine that sniffs live Layer 2 network traffic to identify ARP Spoofing and poisoning attempts in real time. It maintains an in-memory dynamic IP-to-MAC mapping table (self.ip_mac_table) to register new network devices. The moment it detects an existing IP address attempting to map to a different MAC address, it triggers a [MITM / ARP SPOOFING DETECTED!] alarm detailing the attack context and the attacker's fake MAC address.
+
+🥷 17. Raw UDP/53 DNS Query Hijacking & Poisoning Engine (Red Team)
+hacker_dns_spoofer.py / DnsSpoofingEngine: An L7/L4 offensive engine that sniffs network queries over UDP port 53 to inject spoofed DNS responses. It parses IPv4 and UDP headers from incoming raw packets to extract target domain lookups. By preserving the original DNS Transaction ID and applying Pointer Compression (0xc00c), it generates malicious DNS A-record responses to redirect victim domain requests—matching specific domain strings or wildcard (*) rules—to an attacker-controlled IP address.
+
+🛡️ 18. DNS Transaction ID Race Condition & Anomaly Guardian (Blue Team)
+security_dns_guardian.py / DNSGuardian: A Blue Team defensive engine that continuously monitors inbound network DNS responses (QR Bit == 1) to detect DNS Poisoning/Spoofing attacks. It tracks query states via a Transaction ID cache (self.seen_response) to detect race conditions—flagging an anomaly and generating immediate security alerts whenever duplicate responses with matching Transaction IDs arrive containing conflicting IP resolutions or originating from different source IPs.
+
+#### 🥷 19. Raw Layer 3 ICMP Covert Channel & Data Exfiltration Engine (Red Team)
+* **`hacker_icmp_tunnel.py` / `IcmpCovertTunnel`:** An offensive data exfiltration engine operating at Layer 3 utilizing `socket.IPPROTO_ICMP` raw sockets. It constructs 8-byte ICMP Echo Request headers (`Type 8, Code 0`) and embeds sensitive data payload bytes into the standard ping data section to bypass perimeter security filters and firewalls. Features a custom Python implementation of the RFC 1071 16-bit Internet Checksum algorithm.
+
+#### 🛡️ 20. Layer 3 ICMP Payload Anomaly & Exfiltration Guardian (Blue Team)
+* **`security_icmp_guardian.py` / `IcmpGuardianEngine`:** A defensive intrusion detection agent that sniffs live raw ICMP traffic to detect covert channel activity and data exfiltration. It features dual-layer packet parsing capable of handling system-dependent IP header abstractions. The engine inspects ICMP Echo Request payload sizes and text structures, triggering instant security alarms upon detecting unauthorized data payloads.
+
+#### 🥷 21. Low-Level Raw TCP Stealth Port Scanner Engine (Red Team)
+* **`hacker_stealth_scanner.py` / `StealthPortScanner`:** An offensive Layer 4 port scanning engine built from scratch using Python `socket.IPPROTO_RAW`. It directly constructs raw IP and TCP binary headers with custom 16-bit Internet Checksum (RFC 1071) calculations. Supports non-standard and firewall-evading scan modes including Half-Open `SYN` (Flags: `0x02`), `FIN` (Flags: `0x01`), `NULL` (Flags: `0x00`), and `XMAS` (`FIN+PSH+URG`, Flags: `0x29`).
+
+#### 🛡️ 22. Low-Level TCP Flag Anomaly & Port Sweep Detector (Blue Team)
+* **`security_scan_detector.py` / `PortScanDetector`:** A defensive network intrusion detection agent that sniffs live raw TCP traffic (`socket.IPPROTO_TCP`) and parses 20-byte IP and TCP binary headers. Features an automated rule engine that identifies non-compliant TCP flag combinations (RFC 793 violations like `XMAS` and `NULL` scans) and tracks rapid `SYN` port sweep thresholds per source IP to trigger real-time security alerts.
+
+#### 🥷 23. Low-Level Raw TCP HTTP Query Hijacking & Injection Engine (Red Team)
+* **`hacker_http_hijacker.py` / `HttpHijackEngine`:** An offensive Layer 7/Layer 4 traffic manipulation tool built using Python `socket.IPPROTO_TCP`. It sniffs unencrypted raw TCP/80 network streams in real-time to intercept client `GET` and `POST` requests. By extracting live TCP Sequence (`SEQ`) and Acknowledgment (`ACK`) tracking numbers, it exploits race conditions to inject crafted raw HTTP `200 OK` phishing responses back to the client before the legitimate server responds.
+
+#### 🛡️ 24. Low-Level HTTP Traffic Guardian & Injection Detection Engine (Blue Team)
+* **`security_http_guardian.py` / `HttpGuardianEngine`:** A stateful network intrusion detection module designed to sniff raw TCP/80 streams and detect HTTP Session Hijacking anomalies. It tracks active network flows using a 4-tuple session key `(Src IP, Src Port, Dst IP, Dst Port)` to identify Double Response anomalies caused by race-condition injections. Additionally, it performs deep packet payload inspection to catch malicious signature patterns and unauthorized HTML/JS injections in real-time.
+
+
+🛡️ 25. Rogue DHCP Server Detection Engine (Blue Team)
+security_dhcp_rogue_detector.py / DhcpRogueDetectorEngine: A defensive L2/L4 sniffer monitoring UDP ports 67/68 to detect unauthorized or malicious DHCP servers on the local segment. It parses DHCP offer frames, extracts DHCP option fields (such as Option 54 Server Identifier and Option 3 Router Gateway), and triggers security alerts when lease offers originate from untrusted IP addresses.
+
+🛡️ 26. Layer-2 CAM Table MAC Flooding Detector (Blue Team)
+security_mac_flood_detector.py / MacFloodDetectorEngine: A defensive L2 network monitoring module built to detect CAM table exhaustion attempts. Utilizing raw AF_PACKET sockets, it parses 14-byte Ethernet frame headers to track unique source MAC addresses within sliding one-second intervals, alerting administrators when spoofed source MAC address bursts exceed configured safety thresholds.
+
+🛡️ 27. TLS Handshake SNI Domain Inspector (Blue Team)
+security_tls_sni_inspector.py / TlsSniInspectorEngine: A passive HTTPS inspection module that parses raw TCP port 443 Client Hello handshake records. It unpacks binary IP/TCP headers and navigates TLS extension structures to extract unencrypted Server Name Indication (SNI) domain strings, allowing domain name logging and network filtering across encrypted traffic flows.
+
+🛡️ 28. Standalone TCP SYN Guardian & Flow Analysis (Blue Team)
+tcp_syn_guardian.py / TCPSynGuardian: An extended raw-socket SYN flood analyzer that monitors layer-3 IPv4 and layer-4 TCP header flags in real-time. It leverages sliding window tracking algorithms to correlate inbound SYN packet frequencies against specific IP-port targets, triggering defensive alerts and identifying saturation attempts before local service degradation occurs.
+
+
+
+### 📁 Folder 09. Web Application Security & Traffic Analysis Engine
+### defensive_beacon_detector.py / BeaconDetectorEngine: A behavioral network traffic analysis module that monitors egress connections for periodic C2 beaconing patterns. It calculates statistical time-delta variance and payload size consistency across outbound requests, alerting analysts to automated background heartbeats indicative of active host compromises.
+
+### defensive_c2_detector.py / C2DetectorEngine: A heuristic C2 channel detection system that inspects network flow metadata and payload structure. It evaluates byte entropy, non-standard HTTP header configurations, and unusual URI structures to flag covert communication channels operating over allowed web protocols.
+
+### defensive_http_inspector.py / HttpInspectorEngine: A deep-packet HTTP parsing engine designed to inspect request method headers, query parameters, and POST bodies. It normalizes obfuscated inputs via URL and HTML decoding layers before matching content against dynamic threat signatures to identify parameter pollution and data exfiltration.
+
+### defensive_waf_rules.py / WafRuleDatabase: A structured signature repository housing regular expression patterns and rule definitions for web application defense. It categorizes threat patterns across common vulnerability vectors including SQL Injection, Cross-Site Scripting (XSS), Local File Inclusion (LFI), and OS Command Injection.
+
+### defensive_web_waf_filter.py / WebWafFilterEngine: An inline Web Application Firewall (WAF) filtering module that enforces real-time request validation and rate-limiting. Utilizing a sliding-window algorithm, it tracks client IP request frequencies to mitigate brute-force attempts while sanitizing unsafe input payloads before backend execution.
+
+### offensive_c2_channel.py / C2ChannelSimulator: A conceptual module simulating encrypted C2 data transmission mechanisms over standard transport layers. It utilizes AES-256-GCM symmetric encryption and PBKDF2 key derivation to demonstrate how defensive inspection engines process encrypted payload structures.
+
+### offensive_c2_http_profile.py / C2HttpProfileSimulator: A traffic shaping module that models Malleable C2 HTTP profiles. It demonstrates how covert communication markers can be embedded within legitimate HTTP GET/POST headers, cookies, and URI paths to evaluate the detection capabilities of proxy and SIEM log analyzers.
+
+### offensive_c2_jitter.py / C2JitterSimulator: A timing randomization component designed to simulate variable delay intervals (jitter) between beaconing requests. It serves as a testing benchmark for defensive beacon detectors by introducing statistical noise into connection frequencies to evaluate threshold sensitivity.
+
+### offensive_waf_bypass.py / WafBypassAnalyzer: A payload mutation module that generates obfuscation techniques such as inline comment insertion, hexadecimal encoding, and case-mixing. It evaluates whether WAF normalization pipelines correctly decode complex payloads prior to signature matching.
+
+### offensive_web_vuln_fuzzer.py / WebVulnFuzzerEngine: A parameter fuzzing module designed to test web application endpoints for input validation weaknesses. It conducts automated request testing using error-based and time-based response analysis to verify endpoint resistance against dynamic injection attempts.
